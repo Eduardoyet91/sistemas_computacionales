@@ -1,0 +1,213 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Proyecto {% endblock title %}
+{% block navbar %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+    <div class="  grid grid-cols-3 ">
+      
+      <div class=" m-4">
+        <h1 class="text-center">Planificador</h1>
+        <ul
+        role="list"
+        class="h-auto m-4 ml-2 mr-2 mb-4 shadow-2xl rounded-lg  mt-2  border-t border-gray-200 divide-y divide-gray-200 ">
+     
+        <li 
+        
+        class="  m-4 ">
+        
+          
+              {% for l in p %}
+                {% if l.tipo_id == 2 %}
+
+                {% if l.tokens == 1 %}
+                 <p class=" bg-red-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                    >{{l.nombre}}</p>
+                    {% csrf_token %}
+                    {% endif %}
+                    {% if l.tokens != 1 %}
+                    <p class=" bg-gray-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                       >{{l.nombre}}</p>
+                       {% csrf_token %}
+                       {% endif %}
+                    {% csrf_token %}
+                    {% endif %}
+            {% endfor %}
+                
+          
+
+             
+              
+          
+        </li>
+      </ul>
+      
+    </div>
+    <div class=" col-span-2 m-12 shadow-2xl rounded-lg">
+      <H1 class="text-center">Status del Planificador</H1>
+
+      {% for l in p %}
+      {% if l.tipo_id == 2 %}
+
+      {% if l.tokens == 1 %}
+      {% if l.nombre == "Recepcion" %}
+      <p class="text-center">Verificando la existencia del Modelo</p>
+          {% csrf_token %}
+         
+           {% endif %}
+          
+           {% if l.nombre == "Orden Aceptada" %}
+      <p class="text-center">Verificando Tiempo de Produccion</p>
+
+      <div class=" grid grid-cols-2 m-4">
+        <ul
+        role="list"
+        class="h-auto m-4 ml-2 mr-2 mb-4 shadow-2xl rounded-lg  mt-2  border-t border-gray-200 divide-y divide-gray-200 ">
+     
+        <li 
+        
+        class="  m-4 ">
+        
+          
+              {% for l in l_p %}
+                {% if l.tipo_id == 1 %}
+
+                {% if l.tokens == 1 %}
+                 <p class=" bg-red-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                    >{{l.nombre}}</p>
+                    {% csrf_token %}
+                    {% endif %}
+                    {% if l.tokens != 1 %}
+                    <p class=" bg-gray-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                       >{{l.nombre}}</p>
+                       {% csrf_token %}
+                       {% endif %}
+                    {% csrf_token %}
+                    {% endif %}
+            {% endfor %}
+                
+          
+
+             
+              
+          
+        </li>
+      </ul>
+      
+    </div>
+
+          {% csrf_token %}
+          {% endif %}
+
+
+          {% if l.nombre == "Analisis Insumos" %}
+          <p class="text-center">Verificando la existencia de insumos</p>
+          <div class=" grid grid-cols-2 m-4">
+            <ul
+            role="list"
+            class="h-auto m-4 ml-2 mr-2 mb-4 shadow-2xl rounded-lg  mt-2  border-t border-gray-200 divide-y divide-gray-200 ">
+         
+            <li 
+            
+            class="  m-4 ">
+            
+              
+                  {% for l in l_p %}
+                    {% if l.tipo_id == 1 %}
+    
+                    {% if l.tokens == 1 %}
+                     <p class=" bg-red-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                        >{{l.nombre}}</p>
+                        {% csrf_token %}
+                        {% endif %}
+                        {% if l.tokens != 1 %}
+                        <p class=" bg-gray-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                           >{{l.nombre}}</p>
+                           {% csrf_token %}
+                           {% endif %}
+                        {% csrf_token %}
+                        {% endif %}
+                {% endfor %}
+                    
+              
+    
+                 
+                  
+              
+            </li>
+          </ul>
+          
+        </div>
+
+              {% csrf_token %}
+              {% endif %}
+              {% if l.nombre == "Analisis Equipos" %}
+              <p class="text-center">Verificando la existencia de equipos</p>
+
+              <div class="grid grid-cols-2 m-4">
+                <ul
+                role="list"
+                class="h-auto m-4 ml-2 mr-2 mb-4 shadow-2xl rounded-lg  mt-2  border-t border-gray-200 divide-y divide-gray-200 ">
+             
+                <li 
+                
+                class="  m-4 ">
+                
+                  
+                      {% for l in l_p %}
+                        {% if l.tipo_id == 1 %}
+        
+                        {% if l.tokens == 1 %}
+                         <p class=" bg-red-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                            >{{l.nombre}}</p>
+                            {% csrf_token %}
+                            {% endif %}
+                            {% if l.tokens != 1 %}
+                            <p class=" bg-gray-500 m-2 dark:bg-slate-700 shadow-2xl rounded-lg px-6 my-4"
+                               >{{l.nombre}}</p>
+                               {% csrf_token %}
+                               {% endif %}
+                            {% csrf_token %}
+                            {% endif %}
+                    {% endfor %}
+                        
+                  
+        
+                     
+                      
+                  
+                </li>
+              </ul>
+              
+            </div>
+                  {% csrf_token %}
+                  {% endif %}
+          {% csrf_token %}
+          {% endif %}
+          {% csrf_token %}
+          {% endif %}
+  {% endfor %}
+      
+      
+
+
+
+    </div>
+    </div>
+ 
+  {% endblock content %}
+
+
+  {% block footer %}
+  
+  {% endblock footer %}
+  
+  
+  {% block javascript %}
+  
+  {% endblock javascript %}

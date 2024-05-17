@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Proyecto {% endblock title %}
+{% block navbar %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+Procesos Iniciado: 
+<br><hr>
+
+<table>
+{% for proceso in procesos %}
+    <tr>
+        <th>Lugares: </th>
+    {% for lugar in proceso.lugares.all %}
+        <th>{{lugar.nombre}}</th>
+    {% endfor %}
+    </tr>
+    <tr>
+        <th>Tokens: </th>
+    {% for lugar in proceso.lugares.all %}
+        <th>{{lugar.tokens}}</th>
+    {% endfor %}
+    </tr>
+
+    <tr>
+        <th>Transiciones: </th>
+    {% for transicion in proceso.transiciones.all %}
+        <th>{{transicion.nombre}}</th>
+    {% endfor %}
+    </tr>
+    <tr>
+        <th>Habilitada: </th>
+    {% for transicion in proceso.transiciones.all %}
+        <th>{{transicion.habilitada}}</th>
+    {% endfor %}
+    </tr>
+{% endfor %} 
+</table>
+<br>
+{% for proceso in procesos %}
+    {% for transicion in proceso.transiciones.all %}
+        {% if transicion.habilitada %}
+            <a class="bg-red-500" href="{% url 'pEjecucion' transicion.id %}">{{transicion.nombre}} </a>
+            {% csrf_token %}
+        {% endif %}
+    {% endfor %}
+{% endfor %} 
+
+{% endblock content %}
+
+
+{% block footer %}
+
+{% endblock footer %}
